@@ -22,10 +22,11 @@ const App = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (!debouncedVal) return;
     dictionaryApi();
-  }, [word, debouncedVal]);
+  }, [debouncedVal]);
 
   return (
     <div
@@ -49,9 +50,12 @@ const App = () => {
         <div
           style={{ position: "absolute", top: 0, right: 15, paddingTop: 10 }}
         >
-          <span>{LightTheme ? "Dark" : "Light"} Mode</span>
+          <span style={{ color: LightTheme ? "#000" : "#fff" }}>
+            {LightTheme ? "Dark" : "Light"} Mode
+          </span>
           <Switch
             checked={LightTheme}
+            value={LightTheme}
             onChange={() => setLightTheme(!LightTheme)}
           />
         </div>

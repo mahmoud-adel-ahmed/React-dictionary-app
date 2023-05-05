@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <hr style={{ width: "90%", marginTop: 20 }} />
-      <span className="name">made in may 2023</span>
+      <span className="name">Made in May 2023</span>
     </div>
   );
 };

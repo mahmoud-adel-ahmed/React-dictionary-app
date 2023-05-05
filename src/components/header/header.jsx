@@ -19,15 +19,15 @@ const Header = ({ category, setCategory, word, setWord, LightTheme }) => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div className={styles.header}>
-        <span
-          className={styles.title}
-          style={{ color: LightTheme ? "#000" : "#fff" }}
-        >
-          {word ? word : "word hunt"}
-        </span>
-        <div className={styles.inputs}>
+    <div className={styles.header}>
+      <span
+        className={styles.title}
+        style={{ color: LightTheme ? "#000" : "#fff" }}
+      >
+        {word ? word : "word hunt"}
+      </span>
+      <div className={styles.inputs}>
+        <ThemeProvider theme={darkTheme}>
           <TextField
             className={styles.search}
             label="Search a word"
@@ -47,9 +47,9 @@ const Header = ({ category, setCategory, word, setWord, LightTheme }) => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
+        </ThemeProvider>
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 

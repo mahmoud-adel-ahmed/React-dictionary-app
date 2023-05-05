@@ -2,7 +2,6 @@ import React from "react";
 import "./defintions.css";
 
 const Definitions = ({ meanings, word, LightTheme }) => {
-  console.log(meanings);
   return (
     <div className="meanings">
       {word === "" ? (
@@ -11,6 +10,7 @@ const Definitions = ({ meanings, word, LightTheme }) => {
         meanings.map((mean) =>
           mean.meanings.map((item) =>
             item.definitions.map((def) => {
+              console.log(def);
               return (
                 <div
                   key={def.definition}
@@ -21,6 +21,13 @@ const Definitions = ({ meanings, word, LightTheme }) => {
                   }}
                 >
                   <b>{def.definition}</b>
+                  <hr style={{ backgroundColor: "black", width: "100%" }} />
+                  {def?.example && (
+                    <span style={{ color: LightTheme ? "white" : "black" }}>
+                      <b>Example :</b>
+                      {def.example}
+                    </span>
+                  )}
                 </div>
               );
             })
