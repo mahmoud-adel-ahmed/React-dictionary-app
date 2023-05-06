@@ -12,6 +12,7 @@ const App = () => {
   let [meanings, setMeanings] = useState([]);
   let [LightTheme, setLightTheme] = useState(false);
   let [debouncedVal] = useDebounce(word, 200);
+
   let dictionaryApi = async () => {
     try {
       let response = await axios.get(
@@ -22,6 +23,26 @@ const App = () => {
       console.log(error);
     }
   };
+
+  let getLocalTheme = () => {
+    if (!localStorage.getItem("LIGHT_THEME") === false) {
+      let localTheme = JSON.parse(localStorage.getItem("LIGHT_THEME"));
+      let localWord = JSON.parse(localStorage.getItem("WORD"));
+      setLightTheme(localTheme);
+      setWord(localWord);
+    } else {
+      localStorage.setItem("LIGHT_THEME", JSON.stringify(false));
+    }
+  };
+
+  useEffect(() => {
+    getLocalTheme();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("LIGHT_THEME", JSON.stringify(LightTheme));
+    localStorage.setItem("WORD", JSON.stringify(word));
+  }, [LightTheme, word]);
 
   useEffect(() => {
     if (!debouncedVal) return;
