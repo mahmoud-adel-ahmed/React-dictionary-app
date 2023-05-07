@@ -5,7 +5,12 @@ const Definitions = ({ meanings, word, LightTheme }) => {
   return (
     <div className="meanings">
       {word === "" ? (
-        <span className="subTitle">Start by typing a word in search</span>
+        <span
+          className="subTitle"
+          style={{ color: LightTheme ? "#000" : "#fff" }}
+        >
+          Start by typing a word in search
+        </span>
       ) : (
         meanings.map((mean) =>
           mean.meanings.map((item) =>

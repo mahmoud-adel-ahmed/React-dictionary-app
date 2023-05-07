@@ -25,13 +25,14 @@ const App = () => {
   };
 
   let getLocalTheme = () => {
-    if (!localStorage.getItem("LIGHT_THEME") === false) {
+    if (localStorage.getItem("LIGHT_THEME") !== null) {
       let localTheme = JSON.parse(localStorage.getItem("LIGHT_THEME"));
       let localWord = JSON.parse(localStorage.getItem("WORD"));
       setLightTheme(localTheme);
       setWord(localWord);
     } else {
-      localStorage.setItem("LIGHT_THEME", JSON.stringify(false));
+      localStorage.setItem("LIGHT_THEME", JSON.stringify(LightTheme));
+      localStorage.setItem("WORD", JSON.stringify(word));
     }
   };
 
