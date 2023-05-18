@@ -1,10 +1,10 @@
 import React from "react";
 import "./defintions.css";
 
-const Definitions = ({ meanings, word, LightTheme }) => {
+const Definitions = ({ meanings, word, debouncedVal, LightTheme }) => {
   return (
     <div className="meanings">
-      {word === "" ? (
+      {(word || debouncedVal) === "" ? (
         <span
           className="subTitle"
           style={{ color: LightTheme ? "#000" : "#fff" }}
@@ -15,7 +15,6 @@ const Definitions = ({ meanings, word, LightTheme }) => {
         meanings.map((mean) =>
           mean.meanings.map((item) =>
             item.definitions.map((def) => {
-              console.log(def);
               return (
                 <div
                   key={def.definition}

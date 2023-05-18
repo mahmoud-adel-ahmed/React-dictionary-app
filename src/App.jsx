@@ -11,14 +11,16 @@ const App = () => {
   let [word, setWord] = useState("");
   let [meanings, setMeanings] = useState([]);
   let [LightTheme, setLightTheme] = useState(false);
-  let [debouncedVal] = useDebounce(word, 200);
+  let [debouncedVal] = useDebounce(word.trim(), 200);
 
   let dictionaryApi = async () => {
     try {
-      let response = await axios.get(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-      );
-      if (debouncedVal) setMeanings(response.data);
+      if (debouncedVal) {
+        let response = await axios.get(
+          `https://api.dictionaryapi.dev/api/v2/entries/en/${debouncedVal}`
+        );
+        setMeanings(response.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +48,7 @@ const App = () => {
   }, [LightTheme, word]);
 
   useEffect(() => {
-    if (!debouncedVal) return;
+    if (!debouncedVal) setMeanings([]);
     dictionaryApi();
   }, [debouncedVal]);
 
@@ -93,6 +95,7 @@ const App = () => {
           <Definitions
             meanings={meanings}
             word={word}
+            debouncedVal={debouncedVal}
             LightTheme={LightTheme}
             category={category}
           />
